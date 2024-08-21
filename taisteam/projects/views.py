@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
+from projects.models import Notice
+
 data = {'categories': [{'cat': 'Home', 'img': '#home'},
                        {'cat': 'Проекты', 'img': "#speedometer2"},
                        {'cat': 'Конструкторское бюро', 'img': "#table"},
@@ -56,8 +58,22 @@ def index(request):
     return render(request, 'projects/index.html', data)
 
 
+def letters_tais(request):
+    return render(request, 'projects/letters_tais.html', notice_data)
+
+
+def letters_teks(request):
+    return render(request, 'projects/letters_teks.html', notice_data)
+
+
 def notice(request):
-    return render(request, 'projects/notice.html', notice_data)
+    posts = Notice.objects.all()
+    data = {
+        'title': 'Главная страница',
+        'posts': posts,
+    }
+
+    return render(request, 'projects/notice.html', context=data)
 
 
 def about(request):
