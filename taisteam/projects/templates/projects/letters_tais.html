@@ -7,19 +7,23 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Обозначение</th>
-      <th scope="col">О чем</th>
+      <th scope="col">Тема</th>
+      <th scope="col">Содержание</th>
+      <th scope="col">Кому</th>
       <th scope="col">Дата</th>
       <th scope="col">Фамилия</th>
     </tr>
   </thead>
     <tbody>
-    {% for p in table %}
+    {% for p in posts %}
     <tr>
-      <th scope="col">{{ p.number }}</th>
-      <th scope="col">{{ p.title }}</th>
-      <th scope="col">{{ p.about }}</th>
-      <th scope="col">{{ p.data }}</th>
-      <th scope="col">{{ p.surname }}</th>
+      <th scope="col">{{ p.id }}</th>
+      <th scope="col">{{ p.notification }}</th>
+      <th scope="col">{{ p.theme }}</th>
+      <th scope="col">{{ p.content }}</th>
+      <th scope="col">{{ p.to_whom }}</th>
+      <th scope="col">{{ p.date }}</th>
+      <th scope="col">{{ p.worker }}</th>
     </tr>
     {% endfor %}
   </tbody>
