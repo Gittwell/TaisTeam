@@ -1,0 +1,29 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+  <table class="table">
+
+   <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Обозначение</th>
+      <th scope="col">Тема</th>
+      <th scope="col">Содержание</th>
+      <th scope="col">От кого</th>
+      <th scope="col">Дата</th>
+    </tr>
+  </thead>
+    <tbody>
+    {% for p in posts %}
+    <tr>
+      <th scope="col">{{ p.id }}</th>
+      <th scope="col">{{ p.notification }}</th>
+      <th scope="col">{{ p.project.title }}</th>
+      <th scope="col">{{ p.content }}</th>
+      <th scope="col">{{ p.from_whom }}</th>
+      <th scope="col">{{ p.date }}</th>
+    </tr>
+    {% endfor %} 
+  </tbody>
+</table>
+{% endblock %}

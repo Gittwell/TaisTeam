@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<div class="accordion" id="accordionFlushExample">
+  {% for p in posts %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        {{ p.title }}
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+         <table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Отчетная документация</th>
+      <th scope="col">Дата начала</th>
+      <th scope="col">Дата окончания</th>
+    </tr>
+  </thead>
+    <tbody>
+    {% for t in table %}
+    <tr>
+      <th scope="col">{{ t.id }}</th>
+      <th scope="col">{{ t.title }}</th>
+      <th scope="col">{{ t.document }}</th>
+      <th scope="col">{{ t.date_start }}</th>
+      <th scope="col">{{ t.date_finish }}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+</div>
+{% endblock %}

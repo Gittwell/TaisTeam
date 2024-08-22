@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
-from projects.models import Notice, LettersTais, LettersTeks
+from projects.models import Notice, Project, Stages, LettersTais, LettersTeks, Team, LettersTechBureau, IncomingLetters
 
 
 data = {'categories': [{'cat': 'Home', 'img': '#home'},
@@ -59,6 +59,17 @@ def index(request):
     return render(request, 'projects/index.html', data)
 
 
+def projects(request):
+    posts = Project.objects.all()
+    table = Stages.objects.all()
+    data = {
+        'title': 'Главная страница',
+        'posts': posts,
+        'table': table
+    }
+    return render(request, 'projects/projects.html', context=data)
+
+
 def letters_tais(request):
     posts = LettersTais.objects.all()
     data = {
@@ -77,6 +88,24 @@ def letters_teks(request):
     return render(request, 'projects/letters_teks.html', context=data)
 
 
+def letters_tech_bureau(request):
+    posts = LettersTechBureau.objects.all()
+    data = {
+        'title': 'Главная страница',
+        'posts': posts,
+    }
+    return render(request, 'projects/letters_tech_bureau.html', context=data)
+
+
+def incoming_letters(request):
+    posts = IncomingLetters.objects.all()
+    data = {
+        'title': 'Главная страница',
+        'posts': posts,
+    }
+    return render(request, 'projects/letters_tech_bureau.html', context=data)
+
+
 def notice(request):
     posts = Notice.objects.all()
     data = {
@@ -85,6 +114,15 @@ def notice(request):
     }
 
     return render(request, 'projects/notice.html', context=data)
+
+
+def team(request):
+    posts = Team.objects.all()
+    data = {
+        'title': 'Главная страница',
+        'posts': posts,
+    }
+    return render(request, 'projects/team.html', context=data)
 
 
 def about(request):
