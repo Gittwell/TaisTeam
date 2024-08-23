@@ -3,44 +3,60 @@
 {% block content %}
 
 <div class="accordion" id="accordionFlushExample">
-  {% for p in posts %}
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        {{ p.title }}
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    {% for p in posts %}
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+
+                {{ p.title }}
+    </button>
+        </h2>
+       <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
       <div class="accordion-body">
-         <table class="table">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
 
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Наименование</th>
-      <th scope="col">Отчетная документация</th>
-      <th scope="col">Дата начала</th>
-      <th scope="col">Дата окончания</th>
-    </tr>
-  </thead>
-    <tbody>
-    {% for t in table %}
-    <tr>
-      <th scope="col">{{ t.id }}</th>
-      <th scope="col">{{ t.title }}</th>
-      <th scope="col">{{ t.document }}</th>
-      <th scope="col">{{ t.date_start }}</th>
-      <th scope="col">{{ t.date_finish }}</th>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-      </div>
+<!--                <table class="table table-hover">-->
+
+<!--                    <thead class="table-light">-->
+<!--                    <tr>-->
+<!--                        <th scope="col">#</th>-->
+<!--                        <th scope="col">Наименование</th>-->
+<!--                        <th scope="col">Отчетная документация</th>-->
+<!--                        <th scope="col">Дата начала</th>-->
+<!--                        <th scope="col">Дата окончания</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    {% for t in table %}-->
+<!--                    {% if p.title == t.project.title %}-->
+<!--                    <tr>-->
+<!--                        <th scope="row">{{ t.id }}</th>-->
+<!--                        <td>{{ t.title }}</td>-->
+<!--                        <td>{{ t.document }}</td>-->
+<!--                        <td>-->
+<!--                            {% if t.date_start == None %}-->
+<!--                            Определяется отдельным договором-->
+<!--                            {% else %}-->
+<!--                            {{ t.date_start }}-->
+<!--                            {% endif %}-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            {% if t.date_start == None %}-->
+<!--                            Определяется отдельным договором-->
+<!--                            {% else %}-->
+<!--                            {{ t.date_start }}-->
+<!--                            {% endif %}-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                    </tbody>-->
+<!--                </table>-->
+            </div>
+        </div>
     </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
 
 </div>
 
-</div>
 {% endblock %}

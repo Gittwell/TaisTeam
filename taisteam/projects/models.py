@@ -99,6 +99,10 @@ class Team(models.Model):
         return self.surname
 
 
+    def mobile_str(self):
+        return f'+7-({self.mobile_number[1:4]})-{self.mobile_number[4:7]}-{self.mobile_number[7:9]}-{self.mobile_number[9:11]}'
+
+
 class Project(models.Model):
     title = models.CharField(max_length=100)
     time_create = models.DateTimeField(auto_now_add=True)

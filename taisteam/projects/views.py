@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
-
+from django.views import View
+from django.views.generic import TemplateView, ListView
 from projects.models import Notice, Project, Stages, LettersTais, LettersTeks, Team, LettersTechBureau, IncomingLetters
 
 
@@ -55,78 +56,59 @@ notice_data = {"table":[
 ]
 }
 
-def index(request):
-    return render(request, 'projects/index.html', data)
 
 
-def projects(request):
-    posts = Project.objects.all()
-    table = Stages.objects.all()
-    data = {
+class Index(TemplateView):
+    template_name = 'projects/index.html'
+    extra_context = data
+
+
+class ProjectsView(ListView):
+
+    model = Project
+    template_name = 'projects/projects.html'
+    context_object_name = 'posts'
+    extra_context = {
         'title': 'Главная страница',
-        'posts': posts,
-        'table': table
-    }
-    return render(request, 'projects/projects.html', context=data)
-
-
-def letters_tais(request):
-    posts = LettersTais.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
-    }
-    return render(request, 'projects/letters_tais.html', context=data)
-
-
-def letters_teks(request):
-    posts = LettersTeks.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
-    }
-    return render(request, 'projects/letters_teks.html', context=data)
-
-
-def letters_tech_bureau(request):
-    posts = LettersTechBureau.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
-    }
-    return render(request, 'projects/letters_tech_bureau.html', context=data)
-
-
-def incoming_letters(request):
-    posts = IncomingLetters.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
-    }
-    return render(request, 'projects/letters_tech_bureau.html', context=data)
-
-
-def notice(request):
-    posts = Notice.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
+        'table': Stages.objects.all(),
+        'cat_selected': 0,
     }
 
-    return render(request, 'projects/notice.html', context=data)
+
+class LettersTaisView(ListView):
+    model = LettersTais
+    template_name = 'projects/letters_tais.html'
+    context_object_name = 'posts'
 
 
-def team(request):
-    posts = Team.objects.all()
-    data = {
-        'title': 'Главная страница',
-        'posts': posts,
-    }
-    return render(request, 'projects/team.html', context=data)
+class LettersTeksView(ListView):
+    model = LettersTeks
+    template_name = 'projects/letters_teks.html'
+    context_object_name = 'posts'
 
 
-def about(request):
-    return render(request, 'projects/about.html')
+class LettersTechBureauView(ListView):
+    model = LettersTechBureau
+    template_name = 'projects/letters_tech_bureau.html'
+    context_object_name = 'posts'
 
-def categories(request):
-    return HttpResponse("<h1>Статьи по категориям</h1>")
+
+class IncomingLettersView(ListView):
+    model = IncomingLetters
+    template_name = 'projects/incoming_letters.html'
+    context_object_name = 'posts'
+
+
+class NoticeView(ListView):
+    model = Notice
+    template_name = 'projects/notice.html'
+    context_object_name = 'posts'
+
+
+class TeamView(ListView):
+    model = Team
+    template_name = 'projects/team.html'
+    context_object_name = 'posts'
+
+
+

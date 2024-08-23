@@ -1,9 +1,9 @@
 {% extends 'base2.html' %}
 
 {% block content %}
-  <table class="table">
+  <table class="table table-hover">
 
-   <thead>
+   <thead class="table-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Обозначение</th>
@@ -17,13 +17,13 @@
     <tbody>
     {% for p in posts %}
     <tr>
-      <th scope="col">{{ p.id }}</th>
-      <th scope="col">{{ p.notification }}</th>
-      <th scope="col">{{ p.theme }}</th>
-      <th scope="col">{{ p.content }}</th>
-      <th scope="col">{{ p.to_whom }}</th>
-      <th scope="col">{{ p.date }}</th>
-      <th scope="col">{{ p.worker }}</th>
+      <th scope="row">{{ p.id }}</th>
+      <td>{{ p.notification }}</td>
+      <td>{{ p.project.title }}</td>
+      <td>{{ p.content }}</td>
+      <td>{{ p.to_whom }}</td>
+      <td>{{ p.date }}</td>
+      <td>{{ p.worker }}</td>
     </tr>
     {% endfor %}
   </tbody>
