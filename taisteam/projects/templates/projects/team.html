@@ -18,7 +18,7 @@
     <tr>
       <th scope="col">{{ p.id }}</th>
       <td>{{ p.surname }} {{ p.name }} {{ p.lastname }}</td>
-      <td>{{ p.date_of_birth }}</td>
+      <td>{{ p.date_of_birth|date:"d.m.Y"  }}</td>
       <td>{{ p.job }}</td>
       <td>{{ p.email }}</td>
       <td>{{ p.mobile_str }}</td>

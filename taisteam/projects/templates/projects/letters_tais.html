@@ -1,32 +1,54 @@
 {% extends 'base2.html' %}
 
-{% block content %}
-  <table class="table table-hover">
 
-  <thead class="table-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Обозначение</th>
-      <th scope="col">Тема</th>
-      <th scope="col">Содержание</th>
-      <th scope="col">Кому</th>
-      <th scope="col">Дата</th>
-      <th scope="col">Фамилия</th>
+
+{% block content %}
+<table class="table table-hover">
+
+    <thead class="table-light">
+    <tr align-middle>
+        <th scope="col"> #</th>
+        <th scope="col">Обозначение</th>
+        <th scope="col">Тема</th>
+        <th scope="col">Содержание</th>
+        <th scope="col">Кому</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Фамилия</th>
     </tr>
-  </thead>
+    </thead>
     <tbody>
+
+        <tr>
+            <th scope="row">
+                <button type="button" class="btn btn-sm">
+                <svg xmlns="img/svg/plus-square-fill.svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square-fill text-success" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+</svg>
+                     </button>
+            </th>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for f in form %}
+            <td>{{ f }}</td>
+            {% endfor %}
+        </form>
+    </tr>
+
     {% for p in posts %}
     <tr>
-      <th scope="row">{{ p.id }}</th>
-      <td>{{ p.notification }}</td>
-      <td>{{ p.project.title }}</td>
-      <td>{{ p.content }}</td>
-      <td>{{ p.to_whom }}</td>
-      <td>{{ p.date }}</td>
-      <td>{{ p.worker }}</td>
+        <th scope="row"> {{ p.id }}</th>
+        <td>{{ p.notification }}</td>
+        <td>{{ p.project.title }}</td>
+        <td>{{ p.content }}</td>
+        <td>{{ p.to_whom }}</td>
+        <td>{{ p.date|date:"d.m.Y" }}</td>
+        <td>{{ p.worker }}</td>
     </tr>
     {% endfor %}
-  </tbody>
+
+    </tbody>
 </table>
+
+
 {% endblock %}
 

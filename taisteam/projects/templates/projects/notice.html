@@ -20,7 +20,7 @@
       <td>{{ p.notification }}</td>
       <td>{{ p.about }}</td>
       <td>{{ p.project.title }}</td>
-      <td>{{ p.date }}</td>
+      <td>{{ p.date|date:"d.m.Y"  }}</td>
       <td>{{ p.worker }}</td>
     </tr>
     {% endfor %}

@@ -22,7 +22,7 @@
       <td>{{ p.project.title }}</td>
       <td>{{ p.content }}</td>
       <td>{{ p.to_whom }}</td>
-      <td>{{ p.date }}</td>
+      <td>{{ p.date|date:"d.m.Y"  }}</td>
       <td>{{ p.worker }}</td>
     </tr>
     {% endfor %}

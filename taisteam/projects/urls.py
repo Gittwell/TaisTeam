@@ -10,4 +10,6 @@ urlpatterns = [
     path('letters_tech_bureau/', views.LettersTechBureauView.as_view(), name='letters_tech_bureau'),
     path('incoming_letters/', views.IncomingLettersView.as_view(), name='incoming_letters'),
     path('team/', views.TeamView.as_view(), name='team'),
+
+path('test/', views.test, name='test'),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Notice(models.Model):
     notification = models.CharField(max_length=11)
@@ -24,7 +25,7 @@ class LettersTais(models.Model):
     project = models.ForeignKey('Project', on_delete=models.PROTECT, null=True)
     content = models.CharField(max_length=255)
     to_whom = models.CharField(max_length=30)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=date.today().strftime('%d.%m.%Y'))
     worker = models.CharField(max_length=30)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
@@ -112,8 +113,8 @@ class Project(models.Model):
 class Stages(models.Model):
     title = models.CharField(max_length=255)
     document = models.CharField(max_length=255)
-    date_start = models.DateField(null=True)
-    date_finish = models.DateField(null=True)
+    date_start = models.DateField(null=True, blank=True)
+    date_finish = models.DateField(null=True, blank=True)
     project = models.ForeignKey('Project', on_delete=models.PROTECT)
     is_completed = models.BooleanField(default=False)
 
@@ -144,3 +145,6 @@ class PKD(models.Model):
     letter_for_paper_sent = models.ForeignKey('LettersTechBureau', on_delete=models.PROTECT, null=True)
 
     note = models.CharField(max_length=255)
+
+
+

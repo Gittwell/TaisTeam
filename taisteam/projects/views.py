@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views import View
 from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import FormMixin
 from projects.models import Notice, Project, Stages, LettersTais, LettersTeks, Team, LettersTechBureau, IncomingLetters
 
+from projects.forms import AddLettersTais
 
 data = {'categories': [{'cat': 'Home', 'img': '#home'},
                        {'cat': 'Проекты', 'img': "#speedometer2"},
@@ -75,14 +77,16 @@ class ProjectsView(ListView):
     }
 
 
-class LettersTaisView(ListView):
+class LettersTaisView(FormMixin, ListView):
     model = LettersTais
+    form_class = AddLettersTais
     template_name = 'projects/letters_tais.html'
     context_object_name = 'posts'
 
 
-class LettersTeksView(ListView):
+class LettersTeksView( ListView):
     model = LettersTeks
+
     template_name = 'projects/letters_teks.html'
     context_object_name = 'posts'
 
@@ -110,5 +114,11 @@ class TeamView(ListView):
     template_name = 'projects/team.html'
     context_object_name = 'posts'
 
-
-
+def test(request):
+    # if request.method == 'POST':
+    #     form = AddLettersTais(request.POST)
+    # if form.is_valid():
+    #     print(form.cleande.data)
+    # else:
+    form = AddLettersTais()
+    return render(request, 'projects/test.html', {'title': 'Главная страница', 'form': form})
